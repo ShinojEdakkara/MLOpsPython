@@ -146,7 +146,7 @@ def main():
                 run_id,
                 dataset_id,
                 build_id)
-        elif (auc >= 0.5):
+        elif (auc is not None and auc >= 0.5):
             register_aml_model(
                 model_file,
                 model_name,
