@@ -156,6 +156,9 @@ def main():
         run.log(k, v)
         run.parent.log(k, v)
 
+    print("SZ:Prining the metrics")
+    run.log('AUC', metrics.get('auc'))
+
     # Pass model file to next step
     os.makedirs(step_output_path, exist_ok=True)
     model_output_path = os.path.join(step_output_path, model_name)
