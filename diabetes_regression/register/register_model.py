@@ -130,6 +130,11 @@ def main():
     print('SZ:Inside register-model')
     print(auc)
 
+    metrics = run.parent.get_metrics()
+    auc =  metrics.get('auc')
+    print('SZ:Inside register-model')
+    print(auc)
+
     if (model is not None):
         dataset_id = parent_tags["dataset_id"]
         if (build_id is None):
