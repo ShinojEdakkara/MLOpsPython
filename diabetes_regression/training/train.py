@@ -4,7 +4,9 @@ import pandas as pd
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 import lightgbm
+from azureml.core import Run
 
+run = Run.get_context()
 
 def split_data(data_df):
     """Split a dataframe into training and validation datasets"""
@@ -31,6 +33,7 @@ def train_model(data, parameters):
                            valid_sets=valid_data,
                            num_boost_round=500,
                            early_stopping_rounds=20)
+
     return model
 
 def get_model_metrics(model, data):
@@ -81,6 +84,9 @@ def main():
     ## TODO
     model_metrics = get_model_metrics(model, data)
     print(model_metrics)
+
+    metrics = run.get_metrics()
+    run.log('AUC', metrics.get('auc'))
 
 if __name__ == '__main__':
     main()
