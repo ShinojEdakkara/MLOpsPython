@@ -124,6 +124,9 @@ def main():
         print("BuildUri tag not found on parent run.")
         print(f"Tags present: {parent_tags}")
 
+
+    metrics = run.get_metrics()
+    auc =  metrics.get('auc')
     if (model is not None):
         dataset_id = parent_tags["dataset_id"]
         if (build_id is None):
@@ -143,7 +146,7 @@ def main():
                 run_id,
                 dataset_id,
                 build_id)
-        else:
+        elif (auc >= 0.5):
             register_aml_model(
                 model_file,
                 model_name,
@@ -153,6 +156,8 @@ def main():
                 dataset_id,
                 build_id,
                 build_uri)
+        else:
+            print("Model is not reguisterd as auc less than 0.5") 
     else:
         print("Model not found. Skipping model registration.")
         sys.exit(0)
