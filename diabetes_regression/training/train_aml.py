@@ -158,15 +158,9 @@ def main():
         print(f"key and values from metrics: {k} {v}")
 
     print("SZ:Prining the metrics")
-
-    aucmetrics = metrics['metrics']
-    print(aucmetrics)
-
-    print(type(aucmetrics))
-
-    # aucjson = json.loads(aucmetrics)
-
-    run.log('AUC', aucmetrics)
+    value = metrics.get('auc')
+    print(value)
+    run.log('AUC', value)
 
     # Pass model file to next step
     os.makedirs(step_output_path, exist_ok=True)
