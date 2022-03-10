@@ -86,6 +86,11 @@ def main():
     print(model_metrics)
 
     metrics = run.get_metrics()
+
+    print("SZ:Prining the metrics")
+    for (k, v) in metrics.items():
+        run.log(k, v)
+
     run.log('AUC', metrics.get('auc'))
 
 if __name__ == '__main__':
