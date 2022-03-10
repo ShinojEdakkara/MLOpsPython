@@ -155,8 +155,11 @@ def main():
     for (k, v) in metrics.items():
         run.log(k, v)
         run.parent.log(k, v)
+        print(f"key and values from metrics: {k} {v}")
 
     print("SZ:Prining the metrics")
+    print(metrics.get('auc'))
+
     run.log('AUC', metrics.get('auc'))
 
     # Pass model file to next step
