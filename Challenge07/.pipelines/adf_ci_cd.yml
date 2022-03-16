@@ -33,7 +33,7 @@ stages:
     # The pipelines Azure Resource Manager templates are stored in a technical branch "adf_publish"
     - publish: $(Build.SourcesDirectory)/Challenge07/$(Build.Repository.Name)/code/dataingestion
       artifact: di-notebooks
-    - checkout: git://${{variables['System.TeamProject']}}@master    
+    - checkout: git://${{variables['System.TeamProject']}}@adf_publish   
     - publish: $(Build.SourcesDirectory)/Challenge07/$(Build.Repository.Name)/devops-ds-adf
       artifact: adf-pipelines
 
