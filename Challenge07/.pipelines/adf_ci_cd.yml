@@ -17,19 +17,17 @@ stages:
         addToPath: true
         architecture: 'x64'
       displayName: 'Use Python3'
-    - script: pip install --upgrade flake8 flake8_formatter_junit_xml
-      displayName: 'Install flake8'
     - checkout: self  
     - script: |
        python -m pytest --junitxml=$(Build.BinariesDirectory)/Challenge07/unit-testresults.xml $(Build.SourcesDirectory)/Challenge07
        displayName: 'Run unit tests'
     - task: PublishTestResults@2
-    condition: succeededOrFailed()
-    inputs:
+      condition: succeededOrFailed()
+      inputs:
         testResultsFiles: '$(Build.BinariesDirectory)/Challenge07/*-testresults.xml'
         testRunTitle: 'Linting & Unit tests'
         failTaskOnFailedTests: true
-    displayName: 'Publish linting and unit test results'    
+      displayName: 'Publish linting and unit test results'    
 
     # The CI stage produces two artifacts (notebooks and ADF pipelines).
     # The pipelines Azure Resource Manager templates are stored in a technical branch "adf_publish"
