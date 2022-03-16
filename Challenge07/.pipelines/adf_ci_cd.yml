@@ -40,7 +40,7 @@ stages:
 - stage: 'Deploy_to_QA'
   displayName: 'Deploy to QA'
   variables:
-  - group: devops-ds-qa-vg
+  - group: devopsforai-aml-qa-vg
   jobs:
   - deployment: "Deploy_to_Databricks"
     displayName: 'Deploy to Databricks'
