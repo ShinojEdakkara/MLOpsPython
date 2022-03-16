@@ -22,7 +22,7 @@ stages:
     - checkout: self  
     - script: |
        python -m pytest --junitxml=$(Build.BinariesDirectory)/Challenge07/unit-testresults.xml $(Build.SourcesDirectory)/Challenge07
-    displayName: 'Run unit tests'
+       displayName: 'Run unit tests'
     - task: PublishTestResults@2
     condition: succeededOrFailed()
     inputs:
