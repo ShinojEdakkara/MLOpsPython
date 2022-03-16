@@ -1,5 +1,5 @@
 variables:
-- group: devops-aml-qa-vg
+- group: devopsforai-aml-qa-vg
 
 stages:
 - stage: 'CI'
