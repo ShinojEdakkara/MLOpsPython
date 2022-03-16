@@ -22,6 +22,8 @@ stages:
         architecture: 'x64'
       displayName: 'Use Python3'
     - checkout: self  
+    - script: pip install --upgrade pytest
+      displayName: 'Install pytest'
     - script: |
        python -m pytest --junitxml=$(Build.BinariesDirectory)/Challenge07/unit-testresults.xml $(Build.SourcesDirectory)/Challenge07
        displayName: 'Run unit tests'
