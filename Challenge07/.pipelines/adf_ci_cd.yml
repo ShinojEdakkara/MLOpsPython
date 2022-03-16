@@ -79,7 +79,7 @@ stages:
             - task: AzureResourceGroupDeployment@2
               displayName: 'Deploy ADF resources'
               inputs:
-                azureSubscription: $(AZURE_RM_CONNECTION)
+                azureSubscription: $(AZURE_RM_SVC_CONNECTION)
                 resourceGroupName: $(RESOURCE_GROUP)
                 location: $(LOCATION)
                 csmFile: '$(Pipeline.Workspace)/adf-pipelines/ARMTemplateForFactory.json'
@@ -95,7 +95,7 @@ stages:
     - task: AzurePowerShell@4
       displayName: 'Execute ADF Pipeline'
       inputs:
-        azureSubscription: $(AZURE_RM_CONNECTION)
+        azureSubscription: $(AZURE_RM_SVC_CONNECTION)
         ScriptPath: '$(Build.SourcesDirectory)/Challenge07/adf/utils/Invoke-ADFPipeline.ps1'
         ScriptArguments: '-ResourceGroupName $(RESOURCE_GROUP) -DataFactoryName $(DATA_FACTORY_NAME) -PipelineName $(PIPELINE_NAME)'
         azurePowerShellVersion: LatestVersion
@@ -109,7 +109,7 @@ stages:
     - task: configuredatabricks@0
       inputs:
         url: '$(DATABRICKS_URL)'
-        token: '$(DATABRICKS_TOKEN)'
+        token: '$(DATABRICKS_ACCESS_TOKEN)'
       displayName: 'Configure Databricks CLI'    
 
     - task: executenotebook@0
